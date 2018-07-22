@@ -57,25 +57,15 @@
                     <a class="navbar-brand" runat="server" href="~/">Container Management System</a>
                 </div>
                 <div class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav">
+                    <ul class="nav navbar-nav" id="">
                         <li><a runat="server" href="~/">Home</a></li>
+                        <li><a runat="server" id="registerShipping" href="~/customer/RegisterShipping">Register Shipping</a></li>
+                        <li><a runat="server" id="viewShipping" href="~/customer/viewShipping">View Shipping</a></li>
+                    </ul>                    
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a runat="server" id="register" href="~/Account/Register">Register</a></li>
+                        <li><a runat="server" id="login" href="~/Account/Login">Login</a></li>
                     </ul>
-                    <asp:LoginView runat="server" ViewStateMode="Disabled">
-                        <AnonymousTemplate>
-                            <ul class="nav navbar-nav navbar-right">
-                                <li><a runat="server" href="~/Account/Register">Register</a></li>
-                                <li><a runat="server" href="~/Account/Login">Log in</a></li>
-                            </ul>
-                        </AnonymousTemplate>
-                        <LoggedInTemplate>
-                            <ul class="nav navbar-nav navbar-right">
-                                <li><a runat="server" href="~/Account/Manage" title="Manage your account">Hello, <%: Context.User.Identity.GetUserName()  %> !</a></li>
-                                <li>
-                                    <asp:LoginStatus runat="server" LogoutAction="Redirect" LogoutText="Log off" LogoutPageUrl="~/" OnLoggingOut="Unnamed_LoggingOut" />
-                                </li>
-                            </ul>
-                        </LoggedInTemplate>
-                    </asp:LoginView>
                 </div>
             </div>
         </div>

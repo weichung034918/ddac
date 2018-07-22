@@ -30,9 +30,11 @@ namespace ddac.Account
                 login.Parameters.Add(new SqlParameter("@password", Password.Text));
                 SqlDataReader dataReader = login.ExecuteReader();
                 if (dataReader.Read())
-                {
-                    
-                    Session["user"] = dataReader;
+                {                    
+                    Session["id"] = dataReader["id"];
+                    Session["username"] = dataReader["username"];
+                    Session["name"] = dataReader["name"];
+                    Session["role"] = dataReader["role"];
 
                     Type type = this.GetType();
                     ClientScriptManager cs = Page.ClientScript;
