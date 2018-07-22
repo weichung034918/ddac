@@ -6,6 +6,10 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Owin;
 using ddac.Models;
+using System.Data.SqlClient;
+using System.Configuration;
+using System.Data;
+using System.Web.Configuration;
 
 namespace ddac.Account
 {
@@ -13,23 +17,28 @@ namespace ddac.Account
     {
         protected void CreateUser_Click(object sender, EventArgs e)
         {
-            var manager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
-            var signInManager = Context.GetOwinContext().Get<ApplicationSignInManager>();
-            var user = new ApplicationUser() { UserName = Email.Text, Email = Email.Text };
-            IdentityResult result = manager.Create(user, Password.Text);
-            if (result.Succeeded)
+            SqlConnection con = new SqlConnection();
+            con.ConnectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+            string sql = "  INSERT INTO users (username,password,email,contact_no,name,role) VALUES(@username,@password,@email,@contact_no,@name,@role);";
+            SqlCommand registerUser = new SqlCommand(sql, con);
+            registerUser.Parameters.Add("@username", SqlDbType.NVarChar);
+            registerUser.Parameters["@username"].Value = Username.Text;
+            registerUser.Parameters.Add("@password", SqlDbType.NVarChar);
+            registerUser.Parameters["@password"].Value = Password.Text;
+            registerUser.Parameters.Add("@email", SqlDbType.NVarChar);
+            registerUser.Parameters["@email"].Value = Email.Text;
+            registerUser.Parameters.Add("@contact_no", SqlDbType.NVarChar);
+            registerUser.Parameters["@contact_no"].Value = ContactNo.Text;
+            registerUser.Parameters.Add("@name", SqlDbType.VarChar);
+            registerUser.Parameters["@name"].Value = Name.Text;
+            registerUser.Parameters.Add("@role", SqlDbType.VarChar);
+            registerUser.Parameters["@role"].Value = WebConfigurationManager.AppSettings["customer"];
+            con.Open();
+            int s = registerUser.ExecuteNonQuery();
+            con.Close();
+            if (s != 0)
             {
-                // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
-                //string code = manager.GenerateEmailConfirmationToken(user.Id);
-                //string callbackUrl = IdentityHelper.GetUserConfirmationRedirectUrl(code, user.Id, Request);
-                //manager.SendEmail(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>.");
-
-                signInManager.SignIn( user, isPersistent: false, rememberBrowser: false);
-                IdentityHelper.RedirectToReturnUrl(Request.QueryString["ReturnUrl"], Response);
-            }
-            else 
-            {
-                ErrorMessage.Text = result.Errors.FirstOrDefault();
+                Response.Redirect("/Account/Login",false);
             }
         }
     }

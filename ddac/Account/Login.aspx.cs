@@ -5,6 +5,9 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Owin;
 using ddac.Models;
+using System.Data.SqlClient;
+using System.Configuration;
+using System.Web.Configuration;
 
 namespace ddac.Account
 {
@@ -12,49 +15,72 @@ namespace ddac.Account
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            RegisterHyperLink.NavigateUrl = "Register";
-            // Enable this once you have account confirmation enabled for password reset functionality
-            //ForgotPasswordHyperLink.NavigateUrl = "Forgot";
-            OpenAuthLogin.ReturnUrl = Request.QueryString["ReturnUrl"];
-            var returnUrl = HttpUtility.UrlEncode(Request.QueryString["ReturnUrl"]);
-            if (!String.IsNullOrEmpty(returnUrl))
-            {
-                RegisterHyperLink.NavigateUrl += "?ReturnUrl=" + returnUrl;
-            }
         }
 
         protected void LogIn(object sender, EventArgs e)
         {
-            if (IsValid)
+            SqlConnection con = new SqlConnection();
+            con.ConnectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+            try
             {
-                // Validate the user password
-                var manager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
-                var signinManager = Context.GetOwinContext().GetUserManager<ApplicationSignInManager>();
-
-                // This doen't count login failures towards account lockout
-                // To enable password failures to trigger lockout, change to shouldLockout: true
-                var result = signinManager.PasswordSignIn(Email.Text, Password.Text, RememberMe.Checked, shouldLockout: false);
-
-                switch (result)
+                con.Open();
+                string sql = "select * from users where username = @username and password = @password";
+                SqlCommand login = new SqlCommand(sql, con);
+                login.Parameters.Add(new SqlParameter("@username", Username.Text));
+                login.Parameters.Add(new SqlParameter("@password", Password.Text));
+                SqlDataReader dataReader = login.ExecuteReader();
+                if (dataReader.Read())
                 {
-                    case SignInStatus.Success:
-                        IdentityHelper.RedirectToReturnUrl(Request.QueryString["ReturnUrl"], Response);
-                        break;
-                    case SignInStatus.LockedOut:
-                        Response.Redirect("/Account/Lockout");
-                        break;
-                    case SignInStatus.RequiresVerification:
-                        Response.Redirect(String.Format("/Account/TwoFactorAuthenticationSignIn?ReturnUrl={0}&RememberMe={1}", 
-                                                        Request.QueryString["ReturnUrl"],
-                                                        RememberMe.Checked),
-                                          true);
-                        break;
-                    case SignInStatus.Failure:
-                    default:
-                        FailureText.Text = "Invalid login attempt";
-                        ErrorMessage.Visible = true;
-                        break;
+                    
+                    Session["user"] = dataReader;
+
+                    Type type = this.GetType();
+                    ClientScriptManager cs = Page.ClientScript;
+                    if (!cs.IsStartupScriptRegistered(type, "PopupScript"))
+                    {
+                        String cstext = "alert('login success!');";
+                        cs.RegisterStartupScript(type, "PopupScript", cstext, true);
+                    }
+
+                    //if (dataReader["role"].Equals(WebConfigurationManager.AppSettings["customer"]))
+                    //{
+
+                    //}
+                    //else if (dataReader["role"].Equals(WebConfigurationManager.AppSettings["admin"]))
+                    //{
+
+                    //}
+                    //else if (dataReader["role"].Equals(WebConfigurationManager.AppSettings["staff"]))
+                    //{
+
+                    //}
                 }
+                else
+                {
+                    Type type = this.GetType();
+                    ClientScriptManager cs = Page.ClientScript;
+                    if (!cs.IsStartupScriptRegistered(type, "PopupScript"))
+                    {
+                        String cstext = "alert('Invalid username/password entered!');";
+                        cs.RegisterStartupScript(type, "PopupScript", cstext, true);
+                    }
+                }
+                if (!dataReader.IsClosed)
+                {
+                    dataReader.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                if (con.State == System.Data.ConnectionState.Open)
+                {
+                    con.Close();
+                }
+                con.Dispose();
             }
         }
     }
