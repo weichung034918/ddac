@@ -61,6 +61,7 @@
                         <li><a runat="server" href="~/">Home</a></li>
                         <li><a runat="server" id="registerShipping" href="~/customer/RegisterShipping">Register Shipping</a></li>
                         <li><a runat="server" id="viewShipping" href="~/customer/viewShipping">View Shipping</a></li>
+                        <li><a runat="server" id="staffViewShipping" href="~/staff/viewShipping">Staff View Shipping</a></li>
                     </ul>                    
                     <ul class="nav navbar-nav navbar-right">
                         <li><a runat="server" id="register" href="~/Account/Register">Register</a></li>

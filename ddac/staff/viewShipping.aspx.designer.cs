@@ -7,63 +7,81 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ddac {
+namespace ddac.staff {
     
     
-    public partial class SiteMaster {
+    public partial class viewShipping {
         
         /// <summary>
-        /// registerShipping control.
+        /// approvalData control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor registerShipping;
+        protected global::System.Web.UI.WebControls.SqlDataSource approvalData;
         
         /// <summary>
-        /// viewShipping control.
+        /// arrivalData control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor viewShipping;
+        protected global::System.Web.UI.WebControls.SqlDataSource arrivalData;
         
         /// <summary>
-        /// staffViewShipping control.
+        /// Title1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor staffViewShipping;
+        protected global::System.Web.UI.WebControls.Label Title1;
         
         /// <summary>
-        /// register control.
+        /// tableApproval control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor register;
+        protected global::System.Web.UI.WebControls.GridView tableApproval;
         
         /// <summary>
-        /// login control.
+        /// emptyApproval control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor login;
+        protected global::System.Web.UI.WebControls.Label emptyApproval;
         
         /// <summary>
-        /// MainContent control.
+        /// Title2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder MainContent;
+        protected global::System.Web.UI.WebControls.Label Title2;
+        
+        /// <summary>
+        /// tableArrival control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView tableArrival;
+        
+        /// <summary>
+        /// emptyArrival control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label emptyArrival;
     }
 }
