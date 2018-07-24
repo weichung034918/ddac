@@ -13,6 +13,15 @@ namespace ddac {
     public partial class SiteMaster {
         
         /// <summary>
+        /// customerTab control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl customerTab;
+        
+        /// <summary>
         /// registerShipping control.
         /// </summary>
         /// <remarks>
@@ -31,13 +40,13 @@ namespace ddac {
         protected global::System.Web.UI.HtmlControls.HtmlAnchor viewShipping;
         
         /// <summary>
-        /// staffViewShipping control.
+        /// staffTab control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor staffViewShipping;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl staffTab;
         
         /// <summary>
         /// addPort control.
@@ -49,13 +58,40 @@ namespace ddac {
         protected global::System.Web.UI.HtmlControls.HtmlAnchor addPort;
         
         /// <summary>
-        /// a1 control.
+        /// viewPort control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor a1;
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor viewPort;
+        
+        /// <summary>
+        /// A1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor A1;
+        
+        /// <summary>
+        /// A2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor A2;
+        
+        /// <summary>
+        /// notLoggedIn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl notLoggedIn;
         
         /// <summary>
         /// register control.
@@ -83,6 +119,24 @@ namespace ddac {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlAnchor login;
+        
+        /// <summary>
+        /// loggedIn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl loggedIn;
+        
+        /// <summary>
+        /// logout control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor logout;
         
         /// <summary>
         /// MainContent control.

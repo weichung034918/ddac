@@ -47,7 +47,7 @@
         </asp:ScriptManager>
 
         <div class="navbar navbar-inverse navbar-fixed-top">
-            <div class="container">
+            <div class="container" >
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                         <span class="icon-bar"></span>
@@ -57,18 +57,26 @@
                     <a class="navbar-brand" runat="server" href="~/">Container Management System</a>
                 </div>
                 <div class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav" id="">
+                    <ul runat="server"  class="nav navbar-nav" id="customerTab">
                         <li><a runat="server" id="registerShipping" href="~/customer/RegisterShipping">Register Shipping</a></li>
                         <li><a runat="server" id="viewShipping" href="~/customer/viewShipping">View Shipping</a></li>
-                        <li><a runat="server" id="staffViewShipping" href="~/staff/viewShipping">Staff View Shipping</a></li>
+                    </ul> 
+                    <ul runat="server" class="nav navbar-nav" id="staffTab" >
+                        <li><a  id="staffViewShipping" href="~/staff/viewShipping">Staff View Shipping</a></li>
                         <li><a runat="server" id="addPort" href="~/staff/addPort">Add new Port</a></li>
-                        <li><a runat="server" id="a1" href="~/staff/viewPort">View Port</a></li>
-                    </ul>                    
-                    <ul class="nav navbar-nav navbar-right">
+                        <li><a runat="server" id="viewPort" href="~/staff/viewPort">View Port</a></li>
+                        <li><a runat="server" id="A1" href="~/staff/addContainer">Add Container</a></li>
+                        <li><a runat="server" id="A2" href="~/staff/viewContainer">view Container</a></li>
+                    </ul>
+                    <ul runat="server" class="nav navbar-nav navbar-right" id="notLoggedIn">
                         <li><a runat="server" id="register" href="~/Account/Register">Register</a></li>
                         <li><a runat="server" id="staffRegister" href="~/Account/staffRegister">Staff Registration</a></li>
                         <li><a runat="server" id="login" href="~/Account/Login">Login</a></li>
                     </ul>
+                    <ul runat="server" class="nav navbar-nav navbar-right" id="loggedIn">
+                        <li><a runat="server" id="logout" href="~/Account/logout">Log Out</a></li>
+                    </ul>
+
                 </div>
             </div>
         </div>

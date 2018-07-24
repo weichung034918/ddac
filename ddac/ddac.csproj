@@ -182,6 +182,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="404.aspx" />
     <Content Include="About.aspx" />
     <Content Include="Account\AddPhoneNumber.aspx" />
     <Content Include="Account\Confirm.aspx" />
@@ -222,7 +223,10 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Account\logout.aspx" />
+    <Content Include="staff\addContainer.aspx" />
     <Content Include="staff\addPort.aspx" />
+    <Content Include="staff\viewContainer.aspx" />
     <Content Include="staff\viewPort.aspx" />
     <Content Include="webjob\updateApprovedItem.php" />
     <None Include="Properties\PublishProfiles\assignmentDDAC - Web Deploy.pubxml" />
@@ -265,6 +269,13 @@
     <Content Include="Site.Mobile.Master" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="404.aspx.cs">
+      <DependentUpon>404.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="404.aspx.designer.cs">
+      <DependentUpon>404.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Account\AddPhoneNumber.aspx.cs">
       <DependentUpon>AddPhoneNumber.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -412,6 +423,13 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Account\logout.aspx.cs">
+      <DependentUpon>logout.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\logout.aspx.designer.cs">
+      <DependentUpon>logout.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Site.Master.cs">
@@ -428,12 +446,26 @@
     <Compile Include="Site.Mobile.Master.designer.cs">
       <DependentUpon>Site.Mobile.Master</DependentUpon>
     </Compile>
+    <Compile Include="staff\addContainer.aspx.cs">
+      <DependentUpon>addContainer.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="staff\addContainer.aspx.designer.cs">
+      <DependentUpon>addContainer.aspx</DependentUpon>
+    </Compile>
     <Compile Include="staff\addPort.aspx.cs">
       <DependentUpon>addPort.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="staff\addPort.aspx.designer.cs">
       <DependentUpon>addPort.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="staff\viewContainer.aspx.cs">
+      <DependentUpon>viewContainer.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="staff\viewContainer.aspx.designer.cs">
+      <DependentUpon>viewContainer.aspx</DependentUpon>
     </Compile>
     <Compile Include="staff\viewPort.aspx.cs">
       <DependentUpon>viewPort.aspx</DependentUpon>

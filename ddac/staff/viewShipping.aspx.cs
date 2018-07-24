@@ -15,6 +15,10 @@ namespace ddac.staff
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!Session["role"].Equals(WebConfigurationManager.AppSettings["staff"]))
+            {
+                Response.Redirect("Account/Login");
+            }
             emptyApproval.Visible = tableApproval.Rows.Count.Equals(0);
             emptyArrival.Visible = tableArrival.Rows.Count.Equals(0);
         }

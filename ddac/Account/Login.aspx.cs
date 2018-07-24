@@ -44,21 +44,17 @@ namespace ddac.Account
                         cs.RegisterStartupScript(type, "PopupScript", cstext, true);
                     }
 
-                    //if (dataReader["role"].Equals(WebConfigurationManager.AppSettings["customer"]))
-                    //{
-
-                    //}
-                    //else if (dataReader["role"].Equals(WebConfigurationManager.AppSettings["admin"]))
-                    //{
-
-                    //}
-                    //else if (dataReader["role"].Equals(WebConfigurationManager.AppSettings["staff"]))
-                    //{
-
-                    //}
+                    if (dataReader["role"].Equals(WebConfigurationManager.AppSettings["customer"]))
+                    {
+                        Response.Redirect("/customer/viewShipping");
+                    }
+                    else if (dataReader["role"].Equals(WebConfigurationManager.AppSettings["staff"]))
+                    {
+                        Response.Redirect("/staff/viewShipping");
+                    }
                 }
                 else
-                {
+                    {
                     Type type = this.GetType();
                     ClientScriptManager cs = Page.ClientScript;
                     if (!cs.IsStartupScriptRegistered(type, "PopupScript"))

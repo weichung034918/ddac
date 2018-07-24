@@ -11,7 +11,7 @@ using System.Web.UI.WebControls;
 
 namespace ddac.staff
 {
-    public partial class viewPort : System.Web.UI.Page
+    public partial class viewContainer : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -26,15 +26,15 @@ namespace ddac.staff
             if (command.Equals("delete"))
             {
                 int rowIndex = int.Parse(e.CommandArgument.ToString());
-                string sql = "delete from port where id = @id";
+                string sql = "delete from container where id = @id";
                 SqlConnection con = new SqlConnection();
                 con.ConnectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
-                SqlCommand removePortRequest = new SqlCommand(sql, con);
-                removePortRequest.Parameters.Add("@id", SqlDbType.Int);
-                int shippingId = int.Parse(portTable.Rows[rowIndex].Cells[0].Text);
-                removePortRequest.Parameters["@id"].Value = shippingId;
+                SqlCommand removeContainerRequest = new SqlCommand(sql, con);
+                removeContainerRequest.Parameters.Add("@id", SqlDbType.Int);
+                int shippingId = int.Parse(containerTable.Rows[rowIndex].Cells[0].Text);
+                removeContainerRequest.Parameters["@id"].Value = shippingId;
                 con.Open();
-                int success = removePortRequest.ExecuteNonQuery();
+                int success = removeContainerRequest.ExecuteNonQuery();
                 con.Close();
                 if (success != 0)
                 {

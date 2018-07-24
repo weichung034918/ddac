@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Security.Claims;
 using System.Security.Principal;
 using System.Web;
+using System.Web.Configuration;
 using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -69,7 +70,24 @@ namespace ddac
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            customerTab.Visible = false;
+            staffTab.Visible = false;
+            notLoggedIn.Visible = false;
+            loggedIn.Visible = false;
+            if (Session["role"] == null || Session["role"].Equals(""))
+            {
+                notLoggedIn.Visible = true;
+            }
+            else if (Session["role"].Equals(WebConfigurationManager.AppSettings["staff"]))
+            {
+                staffTab.Visible = true;
+                loggedIn.Visible = true;
+            }
+            else if (Session["role"].Equals(WebConfigurationManager.AppSettings["customer"]))
+            {
+                customerTab.Visible = true;
+                loggedIn.Visible = true;
+            }
         }
 
         protected void Unnamed_LoggingOut(object sender, LoginCancelEventArgs e)

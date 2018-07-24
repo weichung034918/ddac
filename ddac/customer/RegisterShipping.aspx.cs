@@ -17,7 +17,10 @@ namespace ddac.customer
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (!Session["role"].Equals(WebConfigurationManager.AppSettings["customer"]))
+            {
+                Response.Redirect("Account/Login");
+            }
             departurePort.Items[0].Attributes.Add("disabled", "disabled");
             arrivalPort.Items[0].Attributes.Add("disabled", "disabled");
             containerSize.Items[0].Attributes.Add("disabled", "disabled");
@@ -45,7 +48,7 @@ namespace ddac.customer
             registerShipping.Parameters.Add("@user_id", SqlDbType.Int);
             registerShipping.Parameters["@user_id"].Value = Session["id"];
             registerShipping.Parameters.Add("@container_id", SqlDbType.Int);
-            registerShipping.Parameters["@container_id"].Value = int.Parse(containerRate.Split(',')[0]);
+            registerShipping.Parameters["@container_id"].Value = double.Parse(containerRate.Split(',')[0]);
             con.Open();
             int s = registerShipping.ExecuteNonQuery();
             con.Close();
