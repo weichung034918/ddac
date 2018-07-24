@@ -58,13 +58,15 @@
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav" id="">
-                        <li><a runat="server" href="~/">Home</a></li>
                         <li><a runat="server" id="registerShipping" href="~/customer/RegisterShipping">Register Shipping</a></li>
                         <li><a runat="server" id="viewShipping" href="~/customer/viewShipping">View Shipping</a></li>
                         <li><a runat="server" id="staffViewShipping" href="~/staff/viewShipping">Staff View Shipping</a></li>
+                        <li><a runat="server" id="addPort" href="~/staff/addPort">Add new Port</a></li>
+                        <li><a runat="server" id="a1" href="~/staff/viewPort">View Port</a></li>
                     </ul>                    
                     <ul class="nav navbar-nav navbar-right">
                         <li><a runat="server" id="register" href="~/Account/Register">Register</a></li>
+                        <li><a runat="server" id="staffRegister" href="~/Account/staffRegister">Staff Registration</a></li>
                         <li><a runat="server" id="login" href="~/Account/Login">Login</a></li>
                     </ul>
                 </div>

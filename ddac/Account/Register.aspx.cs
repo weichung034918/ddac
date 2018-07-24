@@ -38,7 +38,11 @@ namespace ddac.Account
                 }
                 else
                 {
-                    sql = "  INSERT INTO users (username,password,email,contact_no,name,role) VALUES(@username,@password,@email,@contact_no,@name,@role);";
+                    if (!dataReader.IsClosed)
+                    {
+                        dataReader.Close();
+                    }
+                    sql ="INSERT INTO users (username,password,email,contact_no,name,role) VALUES(@username,@password,@email,@contact_no,@name,@role);";
                     SqlCommand registerCustomer = new SqlCommand(sql, con);
                     registerCustomer.Parameters.Add("@username", SqlDbType.NVarChar);
                     registerCustomer.Parameters["@username"].Value = Username.Text;
@@ -48,15 +52,11 @@ namespace ddac.Account
                     registerCustomer.Parameters["@email"].Value = Email.Text;
                     registerCustomer.Parameters.Add("@contact_no", SqlDbType.NVarChar);
                     registerCustomer.Parameters["@contact_no"].Value = ContactNo.Text;
-                    registerCustomer.Parameters.Add("@name", SqlDbType.VarChar);
+                    registerCustomer.Parameters.Add("@name", SqlDbType.NVarChar);
                     registerCustomer.Parameters["@name"].Value = Name.Text;
-                    registerCustomer.Parameters.Add("@role", SqlDbType.VarChar);
+                    registerCustomer.Parameters.Add("@role", SqlDbType.NVarChar);
                     registerCustomer.Parameters["@role"].Value = WebConfigurationManager.AppSettings["customer"];
                     int s = registerCustomer.ExecuteNonQuery();
-                    if (!dataReader.IsClosed)
-                    {
-                        dataReader.Close();
-                    }
                     if (s != 0)
                     {
                         Response.Redirect("/Account/Login", false);
